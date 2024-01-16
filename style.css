@@ -1,0 +1,60 @@
+h1 {
+    color: green;
+
+font-family: 'Courier New', Courier, monospace;
+
+background-color: beige;
+
+border: 10px dashed yellow;
+
+padding: 30px;
+
+text-align: center;
+
+}
+
+#gif1 {margin-left: 850px;
+
+}
+
+#highlight {color: peru;
+
+font-family: 'Courier New', Courier, monospace;
+font-size: larger;
+text-align: center;
+
+}
+
+
+#highlight2 {
+font-family: 'Courier New', Courier, monospace;
+color: peru;
+font-size: larger;
+text-align: center;    
+}
+
+#highlight3 {margin-left: 750px;
+height: 550px;
+width: 450px;}
+
+#highlight4 
+{
+font-family: 'Courier New', Courier, monospace;
+font-size: larger;    
+text-align: center;
+color: peru;}
+
+#highlight5 {
+    font-family: 'Courier New', Courier, monospace;    
+    font-size: larger;
+    text-align: center;
+    color: peru;}
+
+
+#poetry1 {font-family: 'Courier New', Courier, monospace;
+    color: peru;
+    font-size: larger;
+}
+
+body {background-color: beige;}
+
