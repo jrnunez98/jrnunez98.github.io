@@ -13,9 +13,7 @@ text-align: center;
 
 }
 
-#gif1 {text-align: center;
 
-}
 
 #highlight {color: peru;
 
@@ -33,9 +31,11 @@ font-size: larger;
 text-align: center;    
 }
 
-#highlight3 {text
-height: 550px;
-width: 450px;}
+#highlight3 {
+    height: 550px;
+    width: 450px;
+  }
+  
 
 #highlight4 
 {
