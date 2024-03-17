@@ -107,14 +107,21 @@ Acid Verse Vol 3 "The Mixtape"</a> published by Los Angeles Poet Society <br>
     </div>
 
     <script>
-var template = `
-<style type="text/css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NASA APOD Visualizer</title>
+<style>
     .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}
     .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}
     .tftable tr {background-color:#ffffff;}
     .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}
     .tftable tr:hover {background-color:#e0ffff;}
 </style>
+</head>
+<body>
 
 <table class="tftable" border="1">
     <tr>
@@ -134,21 +141,52 @@ var template = `
         <td>https://api.nasa.gov/planetary/apod?api_key={{api_key}}</td>
     </tr>
 </table>
-`;
 
-function constructVisualizerPayload() {
-    var visualizerData = {
-        "Script Source": "NASA Open APIs",
-        "API Key": "jfr9uihqvncOuii7lda5bDlsvOIDePcKTLWlzLte",
-        "Contact URL": "mailto:nasa-data@lists.arc.nasa.gov",
-        "Site Name": "https://api.nasa.gov",
-        "Email From Name": "NASA",
-        "Example API URL": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}"
-    };
-    return { response: visualizerData };
-}
+<script>
+    function constructVisualizerPayload() {
+        var visualizerData = {
+            "Script Source": "NASA Open APIs",
+            "API Key": "jfr9uihqvncOuii7lda5bDlsvOIDePcKTLWlzLte",
+            "Contact URL": "mailto:nasa-data@lists.arc.nasa.gov",
+            "Site Name": "https://api.nasa.gov",
+            "Email From Name": "NASA",
+            "Example API URL": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}"
+        };
+        return { response: visualizerData };
+    }
 
-pm.visualizer.set(template, constructVisualizerPayload());
+    var template = `
+    <table class="tftable" border="1">
+        <tr>
+            <th>Script Source</th>
+            <th>API Key</th>
+            <th>Contact URL</th>
+            <th>Site Name</th>
+            <th>Email From Name</th>
+            <th>Example API URL</th>
+        </tr>
+        <tr>
+            <td>{{response["Script Source"]}}</td>
+            <td>{{response["API Key"]}}</td>
+            <td><a href="{{response["Contact URL"]}}">{{response["Contact URL"]}}</a></td>
+            <td>{{response["Site Name"]}}</td>
+            <td>{{response["Email From Name"]}}</td>
+            <td>{{response["Example API URL"]}}</td>
+        </tr>
+    </table>
+    `;
+
+    var visualizerPayload = constructVisualizerPayload();
+    var html = template.replace(/{{(.*?)}}/g, function(match, key) {
+        return visualizerPayload.response[key.trim()];
+    });
+
+    document.body.innerHTML += html;
+</script>
+
+</body>
+</html>
+
     </script>
 </body>
 </html>
