@@ -107,30 +107,48 @@ Acid Verse Vol 3 "The Mixtape"</a> published by Los Angeles Poet Society <br>
     </div>
 
     <script>
-        // JSON data
-        var jsonData = {
-            "copyright": "Helge Buesing",
-            "date": "2024-02-23",
-            "explanation": "This supernova shock wave plows through interstellar space at over 500,000 kilometers per hour. Centered and moving upward in the sharply detailed color composite its thin, bright, braided filaments are actually long ripples in a cosmic sheet of glowing gas seen almost edge-on. Discovered in the 1840s by Sir John Herschel, the narrow-looking nebula is sometimes known as Herschel's Ray. Cataloged as NGC 2736, its pointed appearance suggests its modern popular name, the Pencil Nebula. The Pencil Nebula is about 800 light-years away. Nearly 5 light-years long it represents only a small part of the Vela supernova remnant though. The enormous Vela remnant itself is around 100 light-years in diameter, the expanding debris cloud of a star that was seen to explode about 11,000 years ago. Initially, the section of the shock wave seen as the Pencil nebula was moving at millions of kilometers per hour but has slowed considerably, sweeping up surrounding interstellar material.",
-            "imageUrls": [
-                "https://apod.nasa.gov/apod/image/2402/NGC2736_Helge_Buesing2048.jpg",
-                "https://apod.nasa.gov/apod/image/2402/NGC2736_Helge_Buesing1024.jpg",
-                "https://apod.nasa.gov/apod/image/2402/NGC2736_Helge_Buesing800.jpg" // Add more image URLs if needed
-            ],
-            "media_type": "image",
-            "service_version": "v1",
-            "title": "The Pencil Nebula Supernova Shock Wave"
-        };
+var template = `
+<style type="text/css">
+    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}
+    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}
+    .tftable tr {background-color:#ffffff;}
+    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}
+    .tftable tr:hover {background-color:#e0ffff;}
+</style>
 
-        // Set JSON data to HTML elements
-        document.getElementById("title").textContent = jsonData.title;
-        document.getElementById("explanation").textContent = jsonData.explanation;
+<table class="tftable" border="1">
+    <tr>
+        <th>Script Source</th>
+        <th>API Key</th>
+        <th>Contact URL</th>
+        <th>Site Name</th>
+        <th>Email From Name</th>
+        <th>Example API URL</th>
+    </tr>
+    <tr>
+        <td>NASA Open APIs</td>
+        <td>jfr9uihqvncOuii7lda5bDlsvOIDePcKTLWlzLte</td>
+        <td><a href="mailto:nasa-data@lists.arc.nasa.gov">nasa-data@lists.arc.nasa.gov</a></td>
+        <td>https://api.nasa.gov</td>
+        <td>NASA</td>
+        <td>https://api.nasa.gov/planetary/apod?api_key={{api_key}}</td>
+    </tr>
+</table>
+`;
 
-        // Choose a random image URL from the list
-        var randomIndex = Math.floor(Math.random() * jsonData.imageUrls.length);
-        var randomImageUrl = jsonData.imageUrls[randomIndex];
-        document.getElementById("apod-image").src = randomImageUrl;
-        document.getElementById("apod-image").alt = jsonData.title;
+function constructVisualizerPayload() {
+    var visualizerData = {
+        "Script Source": "NASA Open APIs",
+        "API Key": "jfr9uihqvncOuii7lda5bDlsvOIDePcKTLWlzLte",
+        "Contact URL": "mailto:nasa-data@lists.arc.nasa.gov",
+        "Site Name": "https://api.nasa.gov",
+        "Email From Name": "NASA",
+        "Example API URL": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}"
+    };
+    return { response: visualizerData };
+}
+
+pm.visualizer.set(template, constructVisualizerPayload());
     </script>
 </body>
 </html>
