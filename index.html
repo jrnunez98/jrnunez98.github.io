@@ -61,50 +61,6 @@ Acid Verse Vol 3 "The Mixtape"</a> published by Los Angeles Poet Society <br>
     3. Section with embedded bandcamp player</p>
 </div>
 
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pencil Nebula Supernova Shock Wave</title>
-</head>
-<body>
-
-    <div>
-        <h2 id="title"></h2>
-        <p id="explanation"></p>
-        <img id="apod-image" src="" alt="">
-    </div>
-
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pencil Nebula Supernova Shock Wave</title>
-</head>
-<body>
-
-    <div>
-        <h2 id="title"></h2>
-        <p id="explanation"></p>
-        <img id="apod-image" alt="">
-    </div>
-
-   <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Pencil Nebula Supernova Shock Wave</title>
-</head>
-<body>
-
-    <div>
-        <h2 id="title"></h2>
-        <p id="explanation"></p>
-        <img id="apod-image" src="" alt="">
-    </div>
 
     <script>
 <!DOCTYPE html>
@@ -142,47 +98,26 @@ Acid Verse Vol 3 "The Mixtape"</a> published by Los Angeles Poet Society <br>
     </tr>
 </table>
 
-<script>
-    function constructVisualizerPayload() {
-        var visualizerData = {
-            "Script Source": "NASA Open APIs",
-            "API Key": "jfr9uihqvncOuii7lda5bDlsvOIDePcKTLWlzLte",
-            "Contact URL": "mailto:nasa-data@lists.arc.nasa.gov",
-            "Site Name": "https://api.nasa.gov",
-            "Email From Name": "NASA",
-            "Example API URL": "https://api.nasa.gov/planetary/apod?api_key={{api_key}}"
-        };
-        return { response: visualizerData };
+const apiUrl = 'https://api.nasa.gov/planetary/apod?api_key=yGr83BpP9euSupCDqbIj0hboezorJJ7jHQCcUcCz';
+
+fetch(apiUrl)
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+    return response.json();
+  })
+  .then(data => {
+    // Populate the elements with fetched data
+    document.getElementById('apod-title').textContent = data.title;
+    document.getElementById('apod-image').src = data.url;
+    document.getElementById('apod-image').alt = data.title;
+    document.getElementById('apod-explanation').textContent = data.explanation;
+  })
+  .catch(error => {
+    console.error('There was a problem with the fetch operation:', error);
+  });
 
-    var template = `
-    <table class="tftable" border="1">
-        <tr>
-            <th>Script Source</th>
-            <th>API Key</th>
-            <th>Contact URL</th>
-            <th>Site Name</th>
-            <th>Email From Name</th>
-            <th>Example API URL</th>
-        </tr>
-        <tr>
-            <td>{{response["Script Source"]}}</td>
-            <td>{{response["API Key"]}}</td>
-            <td><a href="{{response["Contact URL"]}}">{{response["Contact URL"]}}</a></td>
-            <td>{{response["Site Name"]}}</td>
-            <td>{{response["Email From Name"]}}</td>
-            <td>{{response["Example API URL"]}}</td>
-        </tr>
-    </table>
-    `;
-
-    var visualizerPayload = constructVisualizerPayload();
-    var html = template.replace(/{{(.*?)}}/g, function(match, key) {
-        return visualizerPayload.response[key.trim()];
-    });
-
-    document.body.innerHTML += html;
-</script>
 
 </body>
 </html>
